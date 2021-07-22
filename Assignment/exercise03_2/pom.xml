@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>edu.miu.cs.cs544</groupId>
-	<artifactId>exercise02-1</artifactId>
+	<artifactId>exercise03_2</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 
 	<packaging>jar</packaging>

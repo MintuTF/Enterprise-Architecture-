@@ -15,7 +15,7 @@ public class AppCar {
     private static SessionFactory sessionFactory;
 
     static {
-        sessionFactory = HibernateUtils.getSessionFactory(Arrays.asList(Car.class));
+        sessionFactory = HibernateUtils.getSessionFactory(Arrays.asList(Car.class,Owner.class));
     }
 
     public static void main(String[] args) {
@@ -25,18 +25,19 @@ public class AppCar {
             session = sessionFactory.openSession();
             tx = session.beginTransaction();
 
-
+            Owner owner=new Owner("smith","fairfield,US");
+            Owner owner1=new Owner("william","tom,US");
 
             // Create new instance of Employee and set values in it
             Car car1 = new Car("BMW",2021,15000.00);
-            Car car2 = new Car("Mercedes-Benz",2020,10000);
-            Car car3 = new Car("Audi",2020,1000);
+            car1.setOwner(owner);
+
+            Car car2 = new Car("Toyota",2021,15000.00);
+            car2.setOwner(owner1);
 
             session.persist(car1);
             session.persist(car2);
-            session.persist(car3);
             tx.commit();
-            session.close();
 
 
             // tx.commit();
@@ -65,25 +66,7 @@ public class AppCar {
             if (session != null)
                 session.close();
         }
-        try {
-            session = sessionFactory.openSession();
-            tx = session.beginTransaction();
 
-            Car car1=(Car) session.get(Car.class,1L);
-            Car car2=(Car) session.get(Car.class,2L);
-            car1.setPrice(5000);
-
-
-            session.delete(car2);
-
-            tx.commit();
-        } catch (HibernateException e) {
-            tx.rollback();
-            e.printStackTrace();
-        } finally {
-            if (session != null)
-                session.close();
-        }
         try {
             session = sessionFactory.openSession();
             tx = session.beginTransaction();
