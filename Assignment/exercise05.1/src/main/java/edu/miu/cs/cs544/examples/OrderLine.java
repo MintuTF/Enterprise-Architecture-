@@ -6,22 +6,24 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
-@Table(name="orders")
-public class Order {
+@Table(name="orderline")
+public class OrderLine {
+//    +id
+//+quantity
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
-    private Date date;
+    private String quantity;
 
-    public Order(Date date) {
-        this.date = date;
+    public OrderLine(String quantity) {
+        this.quantity = quantity;
     }
 }
