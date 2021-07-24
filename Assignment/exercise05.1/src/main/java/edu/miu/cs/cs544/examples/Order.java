@@ -9,24 +9,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Customer {
+public class Order {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
-    private String firstname ;
-    private String lastname;
+    private Date date;
 
-
-    public Customer(String firstname, String lastname) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public Order(Date date) {
+        this.date = date;
     }
-
 }
