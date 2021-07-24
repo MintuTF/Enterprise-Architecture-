@@ -5,10 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,11 +21,23 @@ public class Customer {
     private long id;
     private String firstname ;
     private String lastname;
+    @OneToMany(mappedBy="customer")
+    private List<Order> orders=new ArrayList<>();
+
 
 
     public Customer(String firstname, String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
+    }
+
+    public boolean addOrder(Order order){
+        order.setCustomer(this);
+        return orders.add(order);
+    }
+    public boolean removeOrder(Order order){
+        order.setCustomer(null);
+        return orders.remove(order);
     }
 
 }

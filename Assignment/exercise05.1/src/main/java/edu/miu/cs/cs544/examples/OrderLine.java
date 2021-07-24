@@ -15,13 +15,17 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @Table(name="orderline")
 public class OrderLine {
-//    +id
-//+quantity
+
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
     private String quantity;
+    @ManyToOne
+    @JoinColumn(name="product_id")
+    private Product product;
+
+
 
     public OrderLine(String quantity) {
         this.quantity = quantity;
