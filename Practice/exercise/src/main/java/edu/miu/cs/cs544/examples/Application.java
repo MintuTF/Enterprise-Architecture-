@@ -12,7 +12,7 @@ public class Application {
 	private static SessionFactory sessionFactory;
 
 	static {
-		sessionFactory = HibernateUtils.getSessionFactory(Arrays.asList(Employee.class,Department.class));
+		sessionFactory = HibernateUtils.getSessionFactory(Arrays.asList(Person.class));
 	}
 
 	public static void main(String[] args) {
@@ -24,12 +24,8 @@ public class Application {
 			tx = session.beginTransaction();
 			
 			// Create new instance of Employee and set values in it
-			Employee person1 = new Employee( "Doe");
-			Employee person2 = new Employee( "Doe");
-			List<Employee> employees=Arrays.asList(person1,person2);
-			Department department=new Department("compro");
-			department.setEmployee(employees);
-
+			Person person1 = new Person("John", "Doe");
+			Person person2 = new Person("Frank", "Miller");
 			
 			// save the person
 			session.persist(person1);
@@ -50,7 +46,7 @@ public class Application {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			// retrieve all persons
-			List<Person> personList = session.createQuery(" select a from Person a", Person.class).list();
+			List<Person> personList = session.createQuery("from Person", Person.class).list();
 			for (Person p : personList) {
 				System.out.println(p);
 			}
