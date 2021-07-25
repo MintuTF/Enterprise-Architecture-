@@ -42,8 +42,7 @@ public class App {
 
             // TODO update HQL
             @SuppressWarnings("unchecked")
-            List<Flight> flights =
-                  Query qu  session.createQuery("select e from Flight e join e.origin org join e.airplane ap  where org.country='USA' and ap.capacity>500").list();
+            List<Flight> flights = session.createQuery("select e from Flight e join e.origin org join e.airplane ap  where org.country='USA' and ap.capacity>500").list();
 
 
 
