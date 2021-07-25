@@ -1,9 +1,6 @@
-package edu.miu.cs.cs544.examples;
+package edu.miu.cs.cs544.examples.singleTable;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,7 +9,13 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
-@Table(name="orderline")
+@Table(name="product")
+@ToString
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(
+        name = "product_type",
+        discriminatorType = DiscriminatorType.STRING
+)
 public class Product {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

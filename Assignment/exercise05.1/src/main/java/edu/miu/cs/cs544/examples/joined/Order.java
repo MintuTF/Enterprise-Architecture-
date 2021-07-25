@@ -1,9 +1,6 @@
-package edu.miu.cs.cs544.examples;
+package edu.miu.cs.cs544.examples.joined;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,11 +13,13 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Table(name="orders")
+@ToString(exclude="customer")
 public class Order {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
+    @Temporal(TemporalType.DATE)
     private Date date;
     @ManyToOne
     @JoinColumn(name="customer_id")

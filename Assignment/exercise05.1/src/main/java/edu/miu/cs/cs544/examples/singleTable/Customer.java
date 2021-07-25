@@ -1,9 +1,6 @@
-package edu.miu.cs.cs544.examples;
+package edu.miu.cs.cs544.examples.singleTable;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +11,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
+@ToString
 public class Customer {
 
     @Id
@@ -21,7 +19,7 @@ public class Customer {
     private long id;
     private String firstname ;
     private String lastname;
-    @OneToMany(mappedBy="customer")
+    @OneToMany(mappedBy="customer",cascade = CascadeType.PERSIST)
     private List<Order> orders=new ArrayList<>();
 
 

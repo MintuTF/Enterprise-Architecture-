@@ -1,9 +1,7 @@
-package edu.miu.cs.cs544.examples;
+package edu.miu.cs.cs544.examples.joined;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,20 +12,21 @@ import javax.persistence.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Table(name="orderline")
+@ToString
 public class OrderLine {
 
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
-    private String quantity;
+    private int quantity;
     @ManyToOne
     @JoinColumn(name="product_id")
     private Product product;
 
 
 
-    public OrderLine(String quantity) {
+    public OrderLine(int quantity) {
         this.quantity = quantity;
     }
 }

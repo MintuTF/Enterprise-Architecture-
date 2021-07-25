@@ -1,4 +1,4 @@
-package edu.miu.cs.cs544.examples;
+package edu.miu.cs.cs544.examples.singleTable;
 
 import java.util.StringTokenizer;
 
