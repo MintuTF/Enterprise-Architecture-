@@ -1,4 +1,4 @@
-package edu.miu.cs.cs544.examples;
+package edu.miu.cs.cs544.examples.OneToManyBI;
 
 
 import lombok.NoArgsConstructor;
@@ -22,9 +22,10 @@ public class Employee {
     @OneToMany(mappedBy="employee")
     private Set<Laptop> laptopSet=new HashSet<>();
 
-    public Employee(String firstname, String lastname) {
+    public Employee(String firstname, String lastname , Laptop laptop) {
         this.firstname = firstname;
         this.lastname = lastname;
+        this.addLaptop(laptop);
     }
 
     public long getId() {

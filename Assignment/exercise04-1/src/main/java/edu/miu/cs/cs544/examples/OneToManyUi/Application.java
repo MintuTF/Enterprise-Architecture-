@@ -1,18 +1,19 @@
-package edu.miu.cs.cs544.examples;
+package edu.miu.cs.cs544.examples.OneToManyUi;
 
-import java.util.Arrays;
-import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.time.LocalDate;
+import java.util.Arrays;
+
 public class Application {
 	private static SessionFactory sessionFactory;
 
 	static {
-		sessionFactory = HibernateUtils.getSessionFactory(Arrays.asList(Employee.class,Laptop.class));
+		sessionFactory = HibernateUtils.getSessionFactory(Arrays.asList(Flight.class, Passenger.class));
 	}
 
 	public static void main(String[] args) {
@@ -24,13 +25,14 @@ public class Application {
 			tx = session.beginTransaction();
 			
 			// Create new instance of Employee and set values in it
-			Employee employee=new Employee("smith","john");
-			Employee employee1=new Employee("wende","aman");
+            Flight flight=new Flight(474,"addis ababa","DC", LocalDate.of(2021,12,12));
 
-			Laptop laptop=new Laptop("HP","HP core i7");
-			Laptop laptop1=new Laptop("Lenove","core i7 with touch screan");
+			Passenger passenger=new Passenger("smith",flight);
 
 
+			session.persist(passenger);
+
+			session.persist(flight);
 
 
 			tx.commit();
@@ -45,10 +47,10 @@ public class Application {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			// retrieve all persons
-			List<Person> personList = session.createQuery("from Person", Person.class).list();
-			for (Person p : personList) {
-				System.out.println(p);
-			}
+			//List<Person> personList = session.createQuery("from Person", Person.class).list();
+//			for (Person p : personList) {
+//				System.out.println(p);
+//			}
 			tx.commit();
 		} catch (HibernateException e) {
 			tx.rollback();

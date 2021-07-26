@@ -20,7 +20,7 @@ public class HibernateUtils {
             try {
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                settings.put(Environment.URL, "jdbc:sqlserver://localhost:1433"); //10.10.10.15
+                settings.put(Environment.URL, "jdbc:sqlserver://localhost:1433/"); //10.10.10.15
                 settings.put(Environment.USER, "sa");
                 settings.put(Environment.PASS, "sa123");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.SQLServer2008Dialect");
@@ -29,7 +29,7 @@ public class HibernateUtils {
 
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-                settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+                settings.put(Environment.HBM2DDL_AUTO, "create");
 
                 configuration.setProperties(settings);
                 

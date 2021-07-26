@@ -1,5 +1,6 @@
-package edu.miu.cs.cs544.examples;
+package edu.miu.cs.cs544.examples.OneToManyBI;
 
+import edu.miu.cs.cs544.examples.OneToManyBI.Employee;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -16,7 +17,6 @@ public class Laptop {
     private String brand;
     private String type;
     @ManyToOne
-    @JoinColumn(name="employee_id")
     private Employee employee;
 
     public Laptop(String brand, String type) {
@@ -55,4 +55,7 @@ public class Laptop {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
+
+
 }
